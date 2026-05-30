@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<section id="hero" class="d-flex align-items-center" style="height:50px">
+
+</section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Login</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="" method="post" role="form" class="php-email-form">
+                {% csrf_token %}
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="name">Your Username</label>
+                  <input type="text" name="uname" class="form-control" id="name" placeholder="Your Username" required>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="name">Your Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Your Password" id="email" required>
+                </div>
+              </div>
+              <div class="text-center"><button type="submit">Login</button></div>
+
+              <div class="text-center mt-2"><a href="/signup_user">click here for new resgistration.</a></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+
+{% endblock  %}

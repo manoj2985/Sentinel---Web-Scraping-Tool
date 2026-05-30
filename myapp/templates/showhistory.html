@@ -1,0 +1,139 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 20%;
+      font-size: 13px;
+      padding: 6px 6px 6px 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+    
+    #myTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+    }
+    
+    #myTable th, #myTable td {
+      text-align: left;
+      padding: 12px;
+    }
+    
+    #myTable tr {
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #myTable tr.header, #myTable tr:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .pagination{
+        margin-bottom:10px;
+    }
+    
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+    }
+    
+    .pagination a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+    
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+
+<section id="hero" class="d-flex align-items-center" style="height:50px">
+
+</section>
+  <main id="main">
+    <section id="scrapping" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>All History</h2>
+        </div>
+    
+
+        <div class="row">
+        <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch"><br>
+          
+        
+            <table id="assigned" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Url/Link</th>
+                        <th>Search User</th>
+                        <th>Unique Word</th>
+                        <th>Total word</th>
+                        <th>Search date</th>
+                        <th>Search Detail</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in page_obj %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.your_url}}</td>
+                        <td>{{i.user.username}}</td>
+                        <td>{{i.total_uword}}</td>
+                        <td>{{i.total_word}}</td>
+                        <td>{{i.created}}</td>
+                        <td>{{i.alldetail}}</td>
+                        <td>
+                            <a href="/deletehistory/{{i.id}}/">
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    
+          </div>
+          <br>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                {% endif %}
+                
+                <li class="current page-item active">
+                  <a class="page-link" href="#"> {{ page_obj.number }}</a> 
+                </li>
+                
+                
+        
+                {% if page_obj.has_next %}
+                  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                  <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            
+          </ul>
+        </div>
+
+      </div>
+
+      
+    </section>
+  </main>
+
+{% endblock  %}
